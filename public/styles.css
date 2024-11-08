@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+#title{
+    color: #0d6efd;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border-right: 0.5px solid #ddd;
+    width: 300px;
+    height: 100vh; 
+    box-sizing: border-box;
+}
+
+#form-menu {
+    position: relative;
+    margin-right: 32px;
+    height: 100%; /* Asegura que el formulario ocupe todo el alto disponible */
+}
+
+
+/* Botón de envío fijo en la parte inferior */
+#submit-container {
+    position: absolute;
+    bottom: 0; /* Lo coloca en la parte inferior */
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+}
+
+/* Estilos para los elementos de la lista */
+ul li {
+    font-family: 'Courier New', Courier, monospace;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+/* Estilo para select y button */
+ul li select, 
+ul li button {
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 7px;
+    background-color: rgb(227, 226, 226);
+}
+
+ul li button{
+    padding-left: 57px;
+    padding-right: 55px;
+    background-color: #0d6efd;
+    color: white;
+    font-weight:bolder;
+}
+
+button:hover{
+    background-color: #198754;
+}
+
+/* Contenedor dinámico */
+#dynamic-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 0;
+}
+
+.class-li{
+    display: flex;
+    justify-content: space-between;
+}
+#signal-config li{
+    display: flex;
+    flex-direction: column;
+}
+#fourier-options{
+    padding-right: 55px;
+}
+
+/* Contenedor de gráficas a la derecha */
+#charts {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    overflow-y: auto; /* Solo scroll si las gráficas crecen */
+}
+
+/* Estilo de cada contenedor de gráfica */
+.plot-container {
+    border: 1px solid #ccc; /* Agrega un borde para visualizar el área de la gráfica */
+    margin: 10px; /* Espaciado entre gráficas */
+}

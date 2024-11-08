@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora gráfica</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="menu">
+        <div id="title">
+            <h3>Configuración de la Señal</h3>
+        </div>
+        <div id="form-menu">
+            <form id="signal-form">
+                <ul id="form-list">
+                    <li>
+                        <select name="wave-options" id="wave-options" onchange="updateForm()">
+                            <option value="general">Elige un tipo de onda</option>
+                            <option value="cuadrada">Cuadrada</option>
+                            <option value="rectangular">Rectangular</option>
+                            <option value="pulso">Pulso</option>
+                        </select>
+                    </li>
+                    <ul id="dynamic-content">
+                        <li id="wave"></li>
+                        <li id="signal-config"></li>
+                    </ul>
+                    <li id="submit-container">
+                        <button type="submit">Generar Señal</button>
+                    </li>
+                </ul>
+            </form>
+        </div>        
+    </div>
+
+    <div id="charts">
+        <div id="signal" class="plot-container"></div>
+        <div id="timeChart" class="plot-container"></div>
+        <div id="frequencyChart" class="plot-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
