@@ -1,3 +1,7 @@
+function toggleMenu() {
+    const menu = document.querySelector('#menu');
+    menu.classList.toggle('active');
+}
 const signalConfig = document.getElementById('signal-config');
 const liFunction = document.createElement('li');
 const liAmplitude = document.createElement('li');
