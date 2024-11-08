@@ -47,7 +47,14 @@ a{
     /* Mostrar el menú cuando se activa */
     #menu.active {
         transform: translateX(0);
-        margin-left: 5%;
+        position: fixed;
+        left: 0;
+        top: 3.5vh;
+        height: 98vh; /* Ajusta el tamaño para ocupar el espacio restante */
+        overflow-y: auto; /* Permite scroll en el menú si el contenido es extenso */
+        transition: transform 0.3s ease-in-out;
+        background-color: #f8f9fa;
+        z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
     }
 
     /* Ícono de hamburguesa visible solo en dispositivos móviles */
@@ -55,22 +62,22 @@ a{
         cursor: pointer;
         display: block;
         padding: 1rem;
-        background-color: #333;
-        color: white;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 1001; /* Asegura que el icono esté por encima del menú */
-        height: 100vh;
+        height: 2.5vh;
         background: #f8f9fa;
         color: #0d6efd;
-        width: 5%;
+        width: 100%;
     }
+
     /* Contenedor de gráficas ajustado para ocupar el espacio restante */
     #charts {
-        margin-left: 12%; /* Deja espacio para el menú fijo */
+        margin-top: 2.5vh; /* Ajusta el espacio para el icono de hamburguesa */
     }
 }
+
 
 /* Menú fijo en pantallas grandes */
 @media (min-width: 769px) {
@@ -111,6 +118,7 @@ a{
     position: absolute;
     bottom: 0; /* Lo coloca en la parte inferior */
     width: 85%; /* Asegura que el botón ocupe todo el ancho */
+    margin-bottom: auto;
 }
 
 /* Estilos para los elementos de la lista */
