@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     display: flex;
     margin: 0;
     padding: 0;
@@ -66,7 +66,7 @@ a{
         top: 0;
         left: 0;
         z-index: 1001; /* Asegura que el icono esté por encima del menú */
-        height: 2.5vh;
+        height: 2.8%;
         background: #f8f9fa;
         color: #0d6efd;
         width: 100%;
@@ -74,7 +74,7 @@ a{
 
     /* Contenedor de gráficas ajustado para ocupar el espacio restante */
     #charts {
-        margin-top: 2.5vh; /* Ajusta el espacio para el icono de hamburguesa */
+        margin-top: 14%; /* Ajusta el espacio para el icono de hamburguesa */
     }
 }
 
@@ -105,6 +105,7 @@ a{
 
 /* Contenedor de formularios */
 #form-menu {
+    width: 100%;
     position: relative;
     margin-right: 32px;
     height: 100%; /* Asegura que el formulario ocupe todo el alto disponible */
@@ -118,12 +119,12 @@ a{
     position: absolute;
     bottom: 0; /* Lo coloca en la parte inferior */
     width: 85%; /* Asegura que el botón ocupe todo el ancho */
-    margin-bottom: auto;
+    margin-bottom: 15%;
 }
 
 /* Estilos para los elementos de la lista */
 ul li {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -133,16 +134,17 @@ ul li {
 /* Estilo para select y button */
 ul li select, 
 ul li button {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     border: none;
     padding: 10px;
     font-size: 15px;
     border-radius: 7px;
     background-color: rgb(227, 226, 226);
+    width: 100%;
 }
 
 ul li button {
-    background-color: #0d6efd;
+    background-color: #2563eb;
     color: white;
     font-weight: bolder;
     margin-bottom: 8px;
@@ -150,7 +152,7 @@ ul li button {
 }
 
 button:hover {
-    background-color: rgb(122, 215, 123);
+    background-color: #1d4ed8;
 }
 
 /* Contenedor dinámico */

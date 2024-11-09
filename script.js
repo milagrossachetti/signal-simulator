@@ -234,10 +234,10 @@ function trigonometric(T, A, N, start) {
         x: time,
         y: signal,
         mode: 'lines',
-        name: 'Señal Cuadrada (Transformación de Fourier)',
+        name: 'Señal Cuadrada',
         line: { color: 'blue' }
     }], {
-        title: 'Dominio del Tiempo - Señal Cuadrada',
+        title: 'Dominio del Tiempo',
         xaxis: { 
             title: 'Tiempo (s)',
             range: [-5, 5],  // Ajustar el rango para mostrar de -5 a 5
@@ -427,7 +427,7 @@ function complexRectangular(T, A, start, p){
         name: 'Señal Rectangular',
         line: { color: 'blue' }
     }], {
-        title: 'Señal Rectangular en el Primer y Segundo Cuadrante',
+        title: 'Señal Rectangular',
         xaxis: { title: 'Tiempo (s)', range: [-10, 10] }, // Rango con desplazamiento inicial
         yaxis: { title: 'Amplitud', range: [-0.5, A+1] },
         dragmode: 'zoom'
@@ -555,7 +555,7 @@ function transformation(A, p, start){
         name: 'Transformada de Fourier del Pulso',
         line: { color: 'blue' }
     }], {
-        title: 'Dominio de Frecuencia (Transformada de Fourier)',
+        title: 'Dominio de Frecuencia',
         xaxis: { 
             title: 'Frecuencia (Hz)',
             range: [fMin, fMax],  // Ajuste del rango de frecuencias
