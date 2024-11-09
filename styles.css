@@ -3,7 +3,7 @@ body {
     display: flex;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden; /* Asegura que no se produzca desplazamiento no deseado */
 }
 
@@ -80,6 +80,7 @@ a{
         width: 100%; /* Asegura que ocupe todo el ancho en móviles */
         padding: 10px; /* Añade un margen interno */
         box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+        padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* Ajuste para el área de gestos */
     }
 
     ul li button {
