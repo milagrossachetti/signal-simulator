@@ -5,6 +5,7 @@ function toggleMenu() {
 const signalConfig = document.getElementById('signal-config');
 const liFunction = document.createElement('li');
 const liAmplitude = document.createElement('li');
+const p = document.createElement('p');
 liAmplitude.innerHTML = `
         <div class="class-li">
             <label for="amplitude">Amplitud:</label>
@@ -132,29 +133,57 @@ function addConfigWave() {
 
 document.getElementById('signal-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    const waveOption = document.getElementById('wave-options').value;
-    const A = parseFloat(document.getElementById('amplitude').value);
+    const waveOption = document.getElementById('wave-options');
+    const option = document.getElementById('fourier-options');
+    if(waveOption === null || option === null || waveOption.value === 'general' || option.value === 'general'){
+        signalConfig.innerHTML = '';
+        const layoutFrequency = {
+            title: 'Dominio de la Frecuencia',
+            xaxis: { title: 'Frecuencia (Hz)' },
+            yaxis: { title: 'Amplitud' },
+        };
     
-    const option = document.getElementById('fourier-options').value;
-
-    if (waveOption === "cuadrada" && option === "trigonometrica") {
+        Plotly.newPlot('frequencyChart', [{ x: [], y: [] }], layoutFrequency);
+    
+        const layoutWave = {
+            title: 'Señal',
+            xaxis: { title: 'Tiempo (s)' },
+            yaxis: { title: 'Amplitud' },
+        };
+    
+        Plotly.newPlot('signal', [{ x: [], y: [] }], layoutWave);
+    
+        const layoutTime = {
+            title: 'Dominio del tiempo',
+            xaxis: { title: 'Tiempo (s)' },
+            yaxis: { title: 'Amplitud' },
+        };
+    
+        Plotly.newPlot('timeChart', [{ x: [], y: [] }], layoutTime);
+        p.innerHTML = 'ERROR: Debe ingresar los parámetros de la señal.'
+        signalConfig.appendChild(p)
+    }else if (waveOption.value === "cuadrada" && option.value === "trigonometrica") {
         liFunction.innerHTML = ``
+        const A = parseFloat(document.getElementById('amplitude').value);
         const start = parseFloat(document.getElementById('start').value);
         const T = parseFloat(document.getElementById('period').value);
         const N = parseInt(document.getElementById('harmonics').value);
         trigonometric(T, A, N, start);
-    } else if (waveOption === "cuadrada" && option === "compleja") {
+    } else if (waveOption.value === "cuadrada" && option.value === "compleja") {
         document.getElementById('timeChart').innerHTML = ''
         const start = parseFloat(document.getElementById('start').value);
         const T = parseFloat(document.getElementById('period').value);
+        const A = parseFloat(document.getElementById('amplitude').value);
         complex(T, A, start);
-    } else if(waveOption === "rectangular" && option === "compleja"){
+    } else if(waveOption.value === "rectangular" && option.value === "compleja"){
         document.getElementById('timeChart').innerHTML = '';
         const start = parseFloat(document.getElementById('start').value);
         const p = parseFloat(document.getElementById('pulse').value);
         const T = parseFloat(document.getElementById('period').value);
+        const A = parseFloat(document.getElementById('amplitude').value);
         complexRectangular(T, A, start, p);
-    } else if(waveOption === "pulso" && option === "transformada"){
+    } else if(waveOption.value === "pulso" && option.value === "transformada"){
+        const A = parseFloat(document.getElementById('amplitude').value);
         document.getElementById('timeChart').innerHTML = '';
         const p = parseFloat(document.getElementById('pulse').value);
         const start = parseFloat(document.getElementById('start').value);
