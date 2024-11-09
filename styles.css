@@ -76,6 +76,16 @@ a{
     #charts {
         margin-top: 14%; /* Ajusta el espacio para el icono de hamburguesa */
     }
+    #submit-container {
+        width: 100%; /* Asegura que ocupe todo el ancho en móviles */
+        padding: 10px; /* Añade un margen interno */
+        box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    }
+
+    ul li button {
+        font-size: 14px; /* Reduce el tamaño de fuente en móviles */
+        padding: 8px; /* Reduce el padding para evitar desbordamiento */
+    }
 }
 
 
