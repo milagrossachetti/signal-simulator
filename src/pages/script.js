@@ -4,6 +4,7 @@ function toggleMenu() {
 }
 const signalConfig = document.getElementById('signal-config');
 const liFunction = document.createElement('li');
+const showFourierSeries = document.createElement('li');
 const liAmplitude = document.createElement('li');
 const p = document.createElement('p');
 liAmplitude.innerHTML = `
@@ -163,7 +164,7 @@ document.getElementById('signal-form').addEventListener('submit', (e) => {
         p.innerHTML = 'ERROR: Debe ingresar los parámetros de la señal.'
         signalConfig.appendChild(p)
     }else if (waveOption.value === "cuadrada" && option.value === "trigonometrica") {
-        liFunction.innerHTML = ``
+        showFourierSeries.innerHTML = ``
         const A = parseFloat(document.getElementById('amplitude').value);
         const start = parseFloat(document.getElementById('start').value);
         const T = parseFloat(document.getElementById('period').value);
@@ -209,12 +210,12 @@ function trigonometric(T, A, N, start) {
         const term = `${coef} * sin(${frequency})`;
         fourierSeries += (n === 1 ? "" : " + ") + term;
     }
-    liFunction.innerHTML = `
+    showFourierSeries.innerHTML = `
         <div class="class-li">
             <span>Serie trigonometrica: </span>
         </div>
         <span id="function">${fourierSeries}</span>`;
-    signalConfig.appendChild(liFunction)
+    signalConfig.appendChild(showFourierSeries);
 
     // Recorrer `t` en un rango simétrico alrededor de `start`
     for (let t = start - 100 * T; t < start + 100 * T; t += 0.01) {
@@ -417,8 +418,9 @@ function complex(T, A, start) {
 }
 
 function complexRectangular(T, A, start, p){
-    const periods = 20;                // Número de períodos a generar
-    const totalTime = T * periods;     // Tiempo total para los 20 períodos
+    
+    const periods = 20;           
+    const totalTime = T * periods;
 
     const time = [];
     const signal = [];
@@ -426,8 +428,44 @@ function complexRectangular(T, A, start, p){
     const frequencies = [];
     const amplitudes = [];
     const f0 = 1 / T; 
+    const maxHarmonics = 10; // Número de armónicos para mostrar en la función
+    // Calcular el componente de frecuencia cero (DC)
+    const C0 = (A * p) / T; // Valor medio de la señal
+    frequencies.push(0);       // Frecuencia 0
+    amplitudes.push(C0);   
+    
+    let titleSpan = signalConfig.querySelector('.title-span');
 
-    // Generación de la señal rectangular considerando el inicio del periodo
+    if (!titleSpan) {
+        // Crear el título si no existe
+        titleSpan = document.createElement('span');
+        titleSpan.innerHTML = `Componentes Cn:`;
+        titleSpan.classList.add('title-span'); // Clase para identificar el elemento
+        signalConfig.appendChild(titleSpan);
+    }
+    liFunction.classList.add("grid-container");
+    signalConfig.appendChild(liFunction); // Agregar la cuadrícula después del título
+    // Limpiar el contenedor antes de generar nuevos elementos
+    liFunction.innerHTML = '';
+    // Mostrar el componente C0
+    const spanC0 = document.createElement('span');
+    spanC0.innerHTML = `C0: ${C0.toFixed(2)}`;
+    spanC0.classList.add("grid-item");
+    liFunction.appendChild(spanC0);
+
+    // Mostrar los componentes Cn
+    for (let n = 1; n <= maxHarmonics; n++) {
+        const Ck = (A * p / T) * Math.sin(Math.PI * n * p / T) / (Math.PI * n * p / T); // Coeficiente complejo
+        console.log(`C${n}: ${Ck.toFixed(2)}`);
+
+        // Crear el elemento span para cada Cn
+        const spanCn = document.createElement('span');
+        spanCn.innerHTML = `C${n}: ${Ck.toFixed(2)}`;
+        spanCn.classList.add("grid-item");
+        liFunction.appendChild(spanCn);
+    }
+
+    // Generación de la señal rectangular y la serie de Fourier
     for (let t = start - totalTime / 2; t < start + totalTime / 2; t += 0.01) {
         // Ajustar el tiempo al inicio del período especificado
         const adjustedTime = (t - start) % T;
@@ -435,17 +473,16 @@ function complexRectangular(T, A, start, p){
 
         // Definir el valor de la señal rectangular en cada instante t
         const rectangularValue = (positiveAdjustedTime < p) ? A : 0;
+        signal.push(rectangularValue);
 
-        // Calcular la serie compleja de Fourier para la onda rectangular
+        // Construir la suma de armónicos para la serie de Fourier
         let sum = 0;
-        for (let n = 1; n <= 100; n++) {
-            const Ck = (2 * A) / (n * Math.PI);             // Coeficiente de la serie compleja
+        for (let n = 1; n <= maxHarmonics; n++) {
+            const Ck = (A * p / T) * Math.sin(Math.PI * n * p / T) / (Math.PI * n * p / T); // Coeficiente complejo
             const omega = (2 * Math.PI * n) / T;            // Frecuencia angular
             sum += Ck * Math.cos(omega * (t - start));      // Componente coseno ajustada por el inicio
         }
-        
         time.push(t);
-        signal.push(rectangularValue);
     }
 
     // Graficar la señal utilizando Plotly
@@ -461,20 +498,20 @@ function complexRectangular(T, A, start, p){
         yaxis: { title: 'Amplitud', range: [-0.5, A+1] },
         dragmode: 'zoom'
     });
-    // Calcular el componente de frecuencia cero (DC) para k = 0
-    const C0 = (2 * A * p) / T; // Valor medio de la señal
-    frequencies.push(0);       // Añadir frecuencia en 0
-    amplitudes.push(C0);       // Añadir amplitud en DC
-    // Generar los coeficientes de Fourier y las frecuencias correspondientes
+         // Amplitud DC
+    // Generar las amplitudes para k ≠ 0
     for (let k = -100; k <= 100; k++) {
-        
-        // Calcular la frecuencia armónica para k (tanto negativa como positiva)
+        if (k === 0) continue; // Evitar recalcular el componente DC
+
+        // Frecuencia k-esima
         const frequency = k * f0;
         frequencies.push(frequency);
 
-        // Calcular el coeficiente C_k para una onda rectangular usando la fórmula de la serie compleja
-        const Ck = (2 * A * p / T) * Math.sin(Math.PI * k * p / T) / (Math.PI * k * p / T); // Función sinc modificada
-        amplitudes.push(Ck); // Usar el valor absoluto para la amplitud
+        // Calcular el coeficiente C_k
+        const sincArg = Math.PI * k * p / T;
+        const Ck = (A * p / T) * (sincArg !== 0 ? Math.sin(sincArg) / sincArg : 1); // Evitar división por 0
+        amplitudes.push(Ck);
+        
     }
 
     // Configuración de la gráfica usando Plotly
@@ -487,7 +524,7 @@ function complexRectangular(T, A, start, p){
         },
         yaxis: { 
             title: 'Amplitud',
-            range: [-0.3, 1],  // Ajuste de amplitud de la gráfica
+            range: [-0.3, C0+0.08],  // Ajuste de amplitud de la gráfica
             autorange: false 
         },
         dragmode: 'zoom',
@@ -517,7 +554,6 @@ function complexRectangular(T, A, start, p){
         name: 'Amplitud en función de Frecuencia',
         line: { color: 'green' }
     }], layout);
-
 }
 
 function transformation(A, p, start){

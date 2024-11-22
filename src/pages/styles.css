@@ -127,12 +127,10 @@ a{
 /* Botón de envío fijo en la parte inferior */
 #submit-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     position: absolute;
     bottom: 0; /* Lo coloca en la parte inferior */
     width: 85%; /* Asegura que el botón ocupe todo el ancho */
-    margin-bottom: 15%;
 }
 
 /* Estilos para los elementos de la lista */
@@ -162,6 +160,7 @@ ul li button {
     font-weight: bolder;
     margin-bottom: 8px;
     justify-content: center;
+    margin-right: 5px;
 }
 
 button:hover {
@@ -203,4 +202,29 @@ button:hover {
 .plot-container {
     border: 1px solid #ccc; /* Agrega un borde para visualizar el área de la gráfica */
     margin: 10px; /* Espaciado entre gráficas */
+}
+
+.grid-container {
+    display: grid !important;;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas de igual tamaño */
+    grid-auto-rows: auto; /* Filas automáticas según el contenido */
+    gap: 5px; /* Espaciado entre elementos */
+    justify-content: center; /* Centrar la cuadrícula horizontalmente */
+    align-items: center; /* Centrar los elementos verticalmente */
+    max-width: 400px; /* Ajusta el ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
+    background-color: #f9f9f9; /* Fondo opcional */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+}
+.none{
+    display: flex;
+}
+
+.grid-item {
+    text-align: center;
+    padding: 5px;
+    background-color: #e0e0e0; /* Fondo para distinguir elementos */
+    border: 1px solid #ddd; /* Borde opcional */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 14px;
 }
