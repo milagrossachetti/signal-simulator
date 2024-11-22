@@ -134,8 +134,6 @@ a{
 }
 #button-home{
     display: flex;
-    height: 38px;
-    align-items: center;
     background-color: transparent;
     border: 2px solid #d1d5db;
 }
