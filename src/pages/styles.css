@@ -40,6 +40,7 @@ a{
     z-index: 1000; /* Para que el menú se muestre por encima del contenido */
 }
 
+
 /* Menú en pantallas pequeñas (se desplaza fuera de la pantalla cuando no está activo) */
 @media (max-width: 768px) {
     #menu {
@@ -53,7 +54,6 @@ a{
         left: 0;
         top: 3.5vh;
         height: 98vh; /* Ajusta el tamaño para ocupar el espacio restante */
-        overflow-y: auto; /* Permite scroll en el menú si el contenido es extenso */
         transition: transform 0.3s ease-in-out;
         background-color: #f8f9fa;
         z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
@@ -118,20 +118,30 @@ a{
 
 /* Contenedor de formularios */
 #form-menu {
-    width: 100%;
     position: relative;
-    margin-right: 32px;
     height: 100%; /* Asegura que el formulario ocupe todo el alto disponible */
+    width: 100%;
 }
 
-/* Botón de envío fijo en la parte inferior */
+/* Contenedor de los botones al final */
 #submit-container {
     display: flex;
     justify-content: center;
-    position: absolute;
-    bottom: 0; /* Lo coloca en la parte inferior */
-    width: 85%; /* Asegura que el botón ocupe todo el ancho */
+    align-items: center;
+    gap: 10px; /* Espaciado entre los botones */
+    margin: 10px 0;
+    position: relative;
+    bottom: 0;
 }
+
+#submit{
+    margin: 0;
+    margin-bottom: 9px;
+    margin-left: 15px;
+    width: 90%;
+    padding-left: 0;
+}
+
 #button-home{
     display: flex;
     background-color: transparent;
@@ -173,12 +183,35 @@ button:hover {
 
 /* Contenedor dinámico */
 #dynamic-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
+    list-style: none; /* Sin viñetas */
+    margin: 0;
     padding: 0;
 }
+/* Asegura que el formulario ocupe toda la altura disponible */
+#signal-form {
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Hace que el formulario ocupe toda la ventana */
+    margin: 0;
+}
+/* Lista principal toma todo el espacio disponible */
+#form-list {
+    width: 90%;
+    flex: 1; /* Crece para ocupar el espacio restante */
+    overflow-y: scroll; /* Permite scroll aunque se oculte la barra */
+    margin-left: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    /* Oculta la barra de desplazamiento en navegadores modernos */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE y Edge antiguo */
+}
 
+/* Oculta la barra de desplazamiento en navegadores basados en WebKit */
+#form-list::-webkit-scrollbar {
+    display: none;
+}
 .class-li {
     display: flex;
     justify-content: space-between;
