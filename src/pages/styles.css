@@ -69,7 +69,6 @@ a{
         position: fixed;
         left: 0;
         top: 3.5vh;
-        height: 98vh; /* Ajusta el tamaño para ocupar el espacio restante */
         background-color: #f8f9fa;
         z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
     }
@@ -79,26 +78,15 @@ a{
         margin-top: 14%; /* Ajusta el espacio para el icono de hamburguesa */
     }
     /* Asegura que el formulario ocupe toda la altura disponible */
-    #signal-form {
-        display: flex;
-        flex-direction: column;
-        height: 90vh; /* Hace que el formulario ocupe toda la ventana */
-        margin: 0;
-    }
     #submit{
         margin: 0;
-        margin-bottom: 9px;
+        margin-bottom: 50px;
         margin-left: 15px;
         width: 90%;
         padding-left: 0;
     }
     #submit-container {
-        position: relative;
-        bottom: 0;
-        width: 100%; /* Asegura que ocupe todo el ancho en móviles */
-        padding: 10px; /* Añade un margen interno */
-        box-sizing: border-box; /* Incluye padding y borde en el ancho total */
-        padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* Ajuste para el área de gestos */
+        width: 100%; 
     }
 
     ul li button {
