@@ -73,26 +73,6 @@ a{
         z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
     }
 
-    /* Ajustes en el contenedor de gráficas para móviles */
-    #charts {
-        margin-top: 14%; /* Ajusta el espacio para el icono de hamburguesa */
-    }
-    /* Asegura que el formulario ocupe toda la altura disponible */
-    #submit{
-        margin: 0;
-        margin-bottom: 50px;
-        margin-left: 15px;
-        width: 90%;
-        padding-left: 0;
-    }
-    #submit-container {
-        width: 100%; 
-    }
-
-    ul li button {
-        font-size: 14px; /* Reduce el tamaño de fuente en móviles */
-        padding: 8px; /* Reduce el padding para evitar desbordamiento */
-    }
 }
 
 
