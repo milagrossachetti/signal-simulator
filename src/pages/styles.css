@@ -72,6 +72,24 @@ a{
         background-color: #f8f9fa;
         z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
     }
+    #signal-form {
+        height: 100dvh; /* Ocupa toda la altura de la pantalla */
+        padding-bottom: 0; /* Sin margen extra */
+    }
+
+    #form-list {
+        overflow-y: auto; /* Permite scroll en dispositivos móviles */
+    }
+
+    #submit {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+    }
 }
 
 
