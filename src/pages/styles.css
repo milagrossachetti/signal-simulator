@@ -72,7 +72,6 @@ a{
         background-color: #f8f9fa;
         z-index: 1000; /* Asegura que el menú esté detrás del icono de hamburguesa */
     }
-
 }
 
 
@@ -115,15 +114,15 @@ a{
     gap: 10px; /* Espaciado entre los botones */
     margin: 10px 0;
     position: relative;
-    bottom: 0;
 }
 
 #submit{
     margin: 0;
-    margin-bottom: 9px;
+    margin-bottom: 100px;
     margin-left: 15px;
     width: 90%;
     padding-left: 0;
+    bottom: 0;
 }
 
 #button-home{
